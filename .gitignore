@@ -1,0 +1,21 @@
+# Editors
+.vscode/
+
+# Cache
+.tox/
+.DS_STORE
+*.pyc
+*.egg-info
+*.sqlite3
+.coverage
+.eslintcache
+.mypy_cache
+
+# Virtualenv & other dependencies
+node_modules/
+venv/
+
+# Private
+*.swp
+.vim
+.envrc
