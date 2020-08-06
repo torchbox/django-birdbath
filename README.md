@@ -10,10 +10,17 @@ A simple tool for giving Django database data a good wash. Anonymise user data, 
 
 Important! The default processors are destructive and will anonymise User emails and passwords. Do not run in production!
 
+By default, Birdbath enables a [Django system check](https://docs.djangoproject.com/en/3.0/topics/checks/) which will trigger an error if a Birdbath cleanup has not been triggered on the current environment.
+
+This is intended to give developers a hint that they need to anonymise/cleanup their data before running commands such as `runserver`.
+
+The suggested approach is to set `BIRDBATH_REQUIRED` to `False` in production environments using an environment variable.
+
 ## Configuration
 
 ### Common Settings
 
+- `BIRDBATH_REQUIRED` (default: `True`) - if True, a Django system check will throw an error if anonymisation has not been executed. Set to `False` in your production environments.
 - `BIRDBATH_CHECKS` - a list of paths to 'Check' classes to be executed before processors. If any of these returns False, the processors will refuse to run.
 - `BIRDBATH_PROCESSORS` - a list of paths to 'Processor' classes to be executed to clean data.
 - `BIRDBATH_SKIP_CHECKS` (default: `False`) - if True, checks will be skipped and processors will be ran immediately.

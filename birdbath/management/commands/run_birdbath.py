@@ -1,15 +1,18 @@
 import logging
 
-from birdbath.settings import BIRDBATH_CHECKS, BIRDBATH_PROCESSORS, BIRDBATH_SKIP_CHECKS
 from django.core.management.base import BaseCommand
 from django.db import DatabaseError, transaction
 from django.utils.module_loading import import_string
+
+from birdbath.settings import BIRDBATH_CHECKS, BIRDBATH_PROCESSORS, BIRDBATH_SKIP_CHECKS
+from birdbath.models import Execution
 
 logger = logging.getLogger(__name__)
 
 
 class Command(BaseCommand):
     help = "Run configured processors"
+    requires_system_checks = []
 
     def handle(self, *args, **options):
         with transaction.atomic():
@@ -28,3 +31,6 @@ class Command(BaseCommand):
                 logger.info(f"Running processes: {processor_path}")
                 processor = import_string(processor_path)()
                 processor.run()
+
+            # Create a simple Execution object to track that this command has ran
+            Execution.objects.create()

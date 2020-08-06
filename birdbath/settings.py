@@ -1,5 +1,7 @@
 from django.conf import settings
 
+BIRDBATH_REQUIRED = getattr(settings, "BIRDBATH_REQUIRED", True,)
+
 BIRDBATH_CHECKS = getattr(settings, "BIRDBATH_CHECKS", [],)
 BIRDBATH_PROCESSORS = getattr(
     settings,
