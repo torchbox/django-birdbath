@@ -1,4 +1,5 @@
-from django.core.checks import Error, register
+from django.core.checks import Error, Warning, register
+from django.db.utils import ProgrammingError
 from . import settings
 from .models import Execution
 
@@ -6,7 +7,17 @@ from .models import Execution
 @register()
 def check_has_been_cleaned(app_configs, **kwargs):
     errors = []
-    execution_count = Execution.objects.count()
+    try:
+        execution_count = Execution.objects.count()
+    except ProgrammingError:
+        errors.append(
+            Warning(
+                "Birdbath is installed but migrations have not been ran.",
+                hint="Run migrate to add birdbath tables.",
+                id="birdbath.W001",
+            )
+        )
+        return errors
 
     if settings.BIRDBATH_REQUIRED and not execution_count:
         errors.append(
