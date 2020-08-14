@@ -1,5 +1,5 @@
 from django.core.checks import Error, Warning, register
-from django.db.utils import ProgrammingError
+from django.db.utils import ProgrammingError, OperationalError
 from . import settings
 from .models import Execution
 
@@ -9,7 +9,7 @@ def check_has_been_cleaned(app_configs, **kwargs):
     errors = []
     try:
         execution_count = Execution.objects.count()
-    except ProgrammingError:
+    except (ProgrammingError, OperationalError):
         errors.append(
             Warning(
                 "Birdbath is installed but migrations have not been ran.",
