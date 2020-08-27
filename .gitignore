@@ -19,3 +19,5 @@ venv/
 *.swp
 .vim
 .envrc
+build
+dist
