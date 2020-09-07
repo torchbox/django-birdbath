@@ -16,6 +16,8 @@ This is intended to give developers a hint that they need to anonymise/cleanup t
 
 The suggested approach is to set `BIRDBATH_REQUIRED` to `False` in production environments using an environment variable.
 
+Checks can be skipped using the `--skip-checks` flag on `run_birdbath`.
+
 ## Configuration
 
 ### Common Settings
@@ -23,7 +25,6 @@ The suggested approach is to set `BIRDBATH_REQUIRED` to `False` in production en
 - `BIRDBATH_REQUIRED` (default: `True`) - if True, a Django system check will throw an error if anonymisation has not been executed. Set to `False` in your production environments.
 - `BIRDBATH_CHECKS` - a list of paths to 'Check' classes to be executed before processors. If any of these returns False, the processors will refuse to run.
 - `BIRDBATH_PROCESSORS` - a list of paths to 'Processor' classes to be executed to clean data.
-- `BIRDBATH_SKIP_CHECKS` (default: `False`) - if True, checks will be skipped and processors will be ran immediately.
 
 ### Processor Specific Settings
 
