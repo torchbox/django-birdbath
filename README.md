@@ -65,6 +65,7 @@ class DeleteAllMyUsersProcessor(BaseProcessor):
 ### Checks
 
 - `checks.contrib.heroku.HerokuNotProductionCheck` - fails if the `HEROKU_APP_NAME` environment variable is not set, or if it set and includes the word `production`.
+- `checks.contrib.heroku.HerokuAnonymisationAllowedCheck` - fails if the `ALLOWS_ANONYMISATION` environment variable does not match the name of the application.
 
 ### Processors
 
