@@ -1,5 +1,3 @@
-import uuid
-from typing import Pattern
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
 from birdbath.settings import (
@@ -7,39 +5,32 @@ from birdbath.settings import (
     BIRDBATH_USER_ANONYMISER_EXCLUDE_SUPERUSERS,
 )
 
-from .base import BaseProcessor
+from .base import BaseModelAnonymiser
 
 
-class BaseUserAnonymiser(BaseProcessor):
+class BaseUserAnonymiser(BaseModelAnonymiser):
+    model = get_user_model()
+
     def get_queryset(self):
-        users = get_user_model().objects.all()
+        queryset = super().get_queryset()
 
         if BIRDBATH_USER_ANONYMISER_EXCLUDE_SUPERUSERS:
-            users = users.exclude(is_superuser=True)
+            queryset = queryset.exclude(is_superuser=True)
 
         if BIRDBATH_USER_ANONYMISER_EXCLUDE_EMAIL_RE:
-            users = users.exclude(
+            queryset = queryset.exclude(
                 email__regex=BIRDBATH_USER_ANONYMISER_EXCLUDE_EMAIL_RE
             )
 
-        return users
+        return queryset
 
 
 class UserEmailAnonymiser(BaseUserAnonymiser):
-    def run(self):
-        users = self.get_queryset()
-
-        for user in users:
-            user.email = f"{uuid.uuid4()}@example.com"
-
-        get_user_model().objects.bulk_update(users, ["email"])
+    anonymise_fields = ["email"]
 
 
 class UserPasswordAnonymiser(BaseUserAnonymiser):
-    def run(self):
-        users = self.get_queryset()
+    anonymise_fields = ["password"]
 
-        for user in users:
-            user.password = make_password(uuid.uuid4())
-
-        get_user_model().objects.bulk_update(users, ["password"])
+    def generate_password(self, field, obj):
+        return make_password(self.get_random_string())
