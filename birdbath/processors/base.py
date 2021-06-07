@@ -3,7 +3,7 @@ import string
 from faker import Faker
 
 from django.db import models
-from django.utils.crypto import get_random_string
+from django.utils.crypto import RANDOM_STRING_CHARS, get_random_string
 from django.utils.functional import cached_property
 
 LOWERCASE_STRING = "".join(string.ascii_lowercase)
@@ -116,7 +116,7 @@ class BaseModelAnonymiser(BaseModelProcessor):
         return self.faker.pyint(min_value, max_value)
 
     def get_random_string(
-        self, min_length=1, max_length=50, length=None, allowed_chars=None
+        self, min_length=1, max_length=50, length=None, allowed_chars=RANDOM_STRING_CHARS
     ):
         length = length or self.faker.pyint(min_length, max_length)
         return get_random_string(length, allowed_chars=allowed_chars)
