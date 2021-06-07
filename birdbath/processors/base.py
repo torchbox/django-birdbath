@@ -133,7 +133,7 @@ class BaseModelAnonymiser(BaseModelProcessor):
 
     def generate_field_value(self, field, field_name, obj):
         if field.choices is not None:
-            random_index = self.faker.pyint(1, len(field.choices)) - 1
+            random_index = self.faker.pyint(0, len(field.choices)) - 1
             return field.choices[random_index][0]
         if isinstance(field, models.EmailField):
             return self.get_random_email(field.max_length)
