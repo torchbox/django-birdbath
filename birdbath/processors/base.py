@@ -3,7 +3,7 @@ import string
 from faker import Faker
 
 from django.db import models
-from django.utils.crypto import RANDOM_STRING_CHARS, get_random_string
+from django.utils.crypto import get_random_string
 from django.utils.functional import cached_property
 
 LOWERCASE_STRING = "".join(string.ascii_lowercase)
@@ -11,6 +11,8 @@ UPPERCASE_STRING = "".join(string.ascii_uppercase)
 NUMBER_FIELD_TYPES = (models.IntegerField, models.FloatField, models.DecimalField)
 FIRST_NAME_FIELDS = ("first_name", "forename", "given_name", "middle_name")
 LAST_NAME_FIELDS = ("last_name", "surname", "family_name")
+
+RANDOM_STRING_CHARS = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
 
 
 class BaseProcessor:
