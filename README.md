@@ -142,6 +142,7 @@ class DirectDebitDeclarationAnonymiser(BaseModelAnonymiser):
         # `field` is the field instance from the model
         # `obj` is the model instance being updated
         return self.faker.iban()
+```
 
 
 ## Check/Processor Reference
