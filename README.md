@@ -42,6 +42,7 @@ Custom checks can be implemented by subclassing `birdbath.checks.BaseCheck` and 
 ```
 from birdbath.checks import BaseCheck
 
+
 class IsDirtyCheck(BaseCheck):
     def check(self):
         return os.environ.get("IS_DIRTY")
@@ -56,10 +57,93 @@ Custom processors can be implemented by subclassing `birdbath.processors.BasePro
 ```
 from birdbath.processors import BaseProcessor
 
+
 class DeleteAllMyUsersProcessor(BaseProcessor):
     def run(self):
         User.objects.all().delete()
 ```
+
+There are also more specialised base classes in `birdbath.processors` that can help you write cleaner custom processors. For example, the above example could be written using the `BaseModelDeleter` class instead:
+
+```
+from birdbath.processors import BaseModelDeleter
+
+
+class DeleteAllMyUsersProcessor(BaseModelDeleter):
+    model = User
+```
+
+If you only need to delete a subset of users, you can override the `get_queryset()` method, like so:
+
+```
+from birdbath.processors import BaseModelDeleter
+
+
+class DeleteNonStaffUsersProcessor(BaseModelDeleter):
+    model = User
+
+    def get_queryset(self):
+        return super().get_queryset().filter(is_staff=False)
+```
+
+If you're looking to 'anonymise' rather than delete objects, you will likely find the `BaseModelAnonymiser` class useful. You just need to indicate the fields that should be 'anonymised' or 'cleared', and the class will do the rest. For example:
+
+
+```
+from birdbath.processors import BaseModelAnonymiser
+
+
+class UserAnonymiser(BaseModelAnonymiser):
+    model = User
+
+    # generate random replacement values for these fields
+    anoymise_fields = ["first_name", "last_name", "email", "password"]
+
+
+class CustomerProfileAnonymiser(BaseModelAnonymiser):
+    model = CustomerProfile
+
+    # generate random replacement values for these fields
+    anoymise_fields = ["date_of_birth"]
+
+    # set these fields to ``None`` (if supported), or a blank string
+    clear_fields = ["email_consent", "sms_consent", "phone_consent", "organisation"]
+```
+
+The class will generate:
+- Valid but non-existent email addresses for fields using `django.db.models.EmailField`.
+- Random choice selections for any field with `choices` defined at the field level.
+- Historic dates for fields using `django.db.models.DateField` or `django.db.models.DateTimeField`.
+- Random numbers for fields using `django.db.models.IntegerField` (or one of it's subclasses), `django.db.models.FloatField` or `django.db.models.DecimalField`.
+- Real-looking first names for fields with one of the following names: `"first_name"`, `"forename"`, `"given_name"`, `"middle_name"`.
+- Real-looking last names for fields with one of the following names:
+`"last_name"`, `"surname"`, `"family_name"`.
+- Random strings for any other fields using `django.db.models.CharField`, `django.db.models.TextField` or a subclass of those.
+
+ If you have fields with custom validation requirements, or would simply like to generate more realistic replacement values, you can add 'generate' methods to your subclass to achieve this. `BaseModelAnonymiser` will automatically look for method matching the format `"generate_{field_name}"` when anoymising field values. For example, the following processor will generate random values for "account_holder" and "account_number" fields:
+
+```
+from birdbath.processors import BaseModelAnonymiser
+
+
+class DirectDebitDeclarationAnonymiser(BaseModelAnonymiser):
+
+    model = DirectDebitDeclaration
+    anonymise_fields = ["account_holder", "account_number"]
+
+    def generate_account_holder(self, field, obj):
+        # Return a value to replace 'account_holder' field values
+        # `field` is the field instance from the model
+        # `obj` is the model instance being updated
+        return self.faker.name()
+
+    def generate_account_number(self, field, obj):
+        # Return a value to replace 'account_number' field values
+        # `field` is the field instance from the model
+        # `obj` is the model instance being updated
+        return self.faker.iban()
+```
+
 
 ## Check/Processor Reference
 

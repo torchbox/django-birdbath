@@ -1,17 +1,13 @@
-from birdbath.processors import BaseProcessor
+from birdbath.processors import BaseModelDeleter
 from wagtail.contrib.forms.models import FormSubmission
 from wagtail.search.models import Query
 
 
-class SearchQueryCleaner(BaseProcessor):
+class SearchQueryCleaner(BaseModelDeleter):
     """ Removes all search queries """
-
-    def run(self, **kwargs):
-        Query.objects.all().delete()
+    model = Query
 
 
-class FormSubmissionCleaner(BaseProcessor):
+class FormSubmissionCleaner(BaseModelDeleter):
     """ Removes all form submissions  """
-
-    def run(self, **kwargs):
-        FormSubmission.objects.all().delete()
+    model = FormSubmission
