@@ -1,3 +1,4 @@
+import sys
 from django.core.checks import Error, Warning, register
 from django.db.utils import ProgrammingError, OperationalError
 from . import settings
@@ -6,7 +7,12 @@ from .models import Execution
 
 @register()
 def check_has_been_cleaned(app_configs, **kwargs):
+    # Skip check if it is running as part of a 'migrate' management command
+    if sys.argv and len(sys.argv) > 1 and sys.argv[1] == "migrate":
+        return []
+
     errors = []
+
     try:
         execution_count = Execution.objects.count()
     except (ProgrammingError, OperationalError):
