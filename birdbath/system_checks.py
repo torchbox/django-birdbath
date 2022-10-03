@@ -18,7 +18,7 @@ def check_has_been_cleaned(app_configs, **kwargs):
     except (ProgrammingError, OperationalError):
         errors.append(
             Warning(
-                "Birdbath is installed but migrations have not been ran.",
+                "Birdbath is installed but migrations have not been run.",
                 hint="Run migrate to add birdbath tables.",
                 id="birdbath.W001",
             )
@@ -28,7 +28,7 @@ def check_has_been_cleaned(app_configs, **kwargs):
     if settings.BIRDBATH_REQUIRED and not execution_count:
         errors.append(
             Error(
-                "BIRDBATH_REQUIRED is set to True but `run_birdbath` has not been ran on this application",
+                "BIRDBATH_REQUIRED is set to True but `run_birdbath` has not been run on this application",
                 hint="If this is a production instance, set BIRDBATH_REQUIRED to False, otherwise, run the `run_birdbath` management command to clean data.",
                 id="birdbath.E001",
             )
