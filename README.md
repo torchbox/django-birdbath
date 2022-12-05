@@ -16,7 +16,7 @@ This is intended to give developers a hint that they need to anonymise/cleanup t
 
 The suggested approach is to set `BIRDBATH_REQUIRED` to `False` in production environments using an environment variable.
 
-Checks can be skipped using the `--skip-checks` flag on `run_birdbath`.
+Checks can be skipped using the `--skip-checks` flag on `run_birdbath` or by setting `BIRDBATH_SKIP_CHECKS = True` in your Django settings.
 
 ## Configuration
 
