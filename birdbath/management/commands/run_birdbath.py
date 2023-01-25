@@ -21,8 +21,10 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args, **options):
+        skip_checks = options.get("skip_checks") or BIRDBATH_SKIP_CHECKS
+
         with transaction.atomic():
-            if not options.get("skip_checks"):
+            if not skip_checks:
                 for check_path in BIRDBATH_CHECKS:
                     check = import_string(check_path)()
                     if not check.check():
