@@ -1,6 +1,8 @@
 import sys
+
 from django.core.checks import Error, Warning, register
-from django.db.utils import ProgrammingError, OperationalError
+from django.db.utils import OperationalError, ProgrammingError
+
 from . import settings
 from .models import Execution
 

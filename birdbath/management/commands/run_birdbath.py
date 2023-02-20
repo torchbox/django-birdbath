@@ -5,8 +5,8 @@ from django.core.management.base import BaseCommand
 from django.db import DatabaseError, transaction
 from django.utils.module_loading import import_string
 
-from birdbath.settings import BIRDBATH_CHECKS, BIRDBATH_PROCESSORS, BIRDBATH_SKIP_CHECKS
 from birdbath.models import Execution
+from birdbath.settings import BIRDBATH_CHECKS, BIRDBATH_PROCESSORS, BIRDBATH_SKIP_CHECKS
 
 logger = logging.getLogger(__name__)
 
