@@ -4,10 +4,12 @@ from wagtail.search.models import Query
 
 
 class SearchQueryCleaner(BaseModelDeleter):
-    """ Removes all search queries """
+    """Removes all search queries"""
+
     model = Query
 
 
 class FormSubmissionCleaner(BaseModelDeleter):
-    """ Removes all form submissions  """
+    """Removes all form submissions"""
+
     model = FormSubmission

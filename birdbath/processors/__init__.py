@@ -1,1 +1,6 @@
-from .base import BaseProcessor, BaseModelProcessor, BaseModelDeleter, BaseModelAnonymiser
+from .base import (
+    BaseProcessor,
+    BaseModelProcessor,
+    BaseModelDeleter,
+    BaseModelAnonymiser,
+)

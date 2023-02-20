@@ -53,4 +53,3 @@ class Command(BaseCommand):
             Execution.objects.create()
 
             self.stdout.write("Processing completed")
-

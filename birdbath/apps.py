@@ -7,4 +7,3 @@ class BirdBathConfig(AppConfig):
 
     def ready(self):
         from . import system_checks
-
