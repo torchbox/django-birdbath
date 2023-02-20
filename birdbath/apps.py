@@ -6,5 +6,4 @@ class BirdBathConfig(AppConfig):
     default_auto_field = "django.db.models.AutoField"
 
     def ready(self):
-        from . import system_checks
-
+        from . import system_checks  # noqa: F401

@@ -1,6 +1,8 @@
 import sys
+
 from django.core.checks import Error, Warning, register
-from django.db.utils import ProgrammingError, OperationalError
+from django.db.utils import OperationalError, ProgrammingError
+
 from . import settings
 from .models import Execution
 
@@ -28,8 +30,8 @@ def check_has_been_cleaned(app_configs, **kwargs):
     if settings.BIRDBATH_REQUIRED and not execution_count:
         errors.append(
             Error(
-                "BIRDBATH_REQUIRED is set to True but `run_birdbath` has not been run on this application",
-                hint="If this is a production instance, set BIRDBATH_REQUIRED to False, otherwise, run the `run_birdbath` management command to clean data.",
+                "BIRDBATH_REQUIRED is set to True but `run_birdbath` has not been run on this application",  # noqa: E501
+                hint="If this is a production instance, set BIRDBATH_REQUIRED to False, otherwise, run the `run_birdbath` management command to clean data.",  # noqa: E501
                 id="birdbath.E001",
             )
         )

@@ -1,10 +1,10 @@
 import string
 
-from faker import Faker
-
 from django.db import models
 from django.utils.crypto import get_random_string
 from django.utils.functional import cached_property
+
+from faker import Faker
 
 LOWERCASE_STRING = "".join(string.ascii_lowercase)
 UPPERCASE_STRING = "".join(string.ascii_uppercase)
@@ -12,7 +12,7 @@ NUMBER_FIELD_TYPES = (models.IntegerField, models.FloatField, models.DecimalFiel
 FIRST_NAME_FIELDS = ("first_name", "forename", "given_name", "middle_name")
 LAST_NAME_FIELDS = ("last_name", "surname", "family_name")
 
-RANDOM_STRING_CHARS = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+RANDOM_STRING_CHARS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 
 
 class BaseProcessor:
@@ -118,7 +118,11 @@ class BaseModelAnonymiser(BaseModelProcessor):
         return self.faker.pyint(min_value, max_value)
 
     def get_random_string(
-        self, min_length=1, max_length=50, length=None, allowed_chars=RANDOM_STRING_CHARS
+        self,
+        min_length=1,
+        max_length=50,
+        length=None,
+        allowed_chars=RANDOM_STRING_CHARS,
     ):
         length = length or self.faker.pyint(min_length, max_length)
         return get_random_string(length, allowed_chars=allowed_chars)

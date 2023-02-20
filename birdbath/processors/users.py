@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
+
 from birdbath.settings import (
     BIRDBATH_USER_ANONYMISER_EXCLUDE_EMAIL_RE,
     BIRDBATH_USER_ANONYMISER_EXCLUDE_SUPERUSERS,
