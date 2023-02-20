@@ -1,8 +1,7 @@
 import logging
-import sys
 
 from django.core.management.base import BaseCommand
-from django.db import DatabaseError, transaction
+from django.db import transaction
 from django.utils.module_loading import import_string
 
 from birdbath.models import Execution

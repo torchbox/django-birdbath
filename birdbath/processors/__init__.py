@@ -4,3 +4,10 @@ from .base import (
     BaseModelProcessor,
     BaseProcessor,
 )
+
+__all__ = [
+    "BaseModelAnonymiser",
+    "BaseModelDeleter",
+    "BaseModelProcessor",
+    "BaseProcessor",
+]
