@@ -16,14 +16,11 @@
 
 ## v0.0.4 (2021-06-07)
 
-- Merge branch 'fix/invalid-import' into 'master'
 - Improve compatibility with older Django versions
 
 ## v0.0.3 (2021-06-07)
 
 - Update Faker version
-- Start choices list at first element
-- Always pass allowed chars when generating string
 - Remove un-used faker dependency
 - Update README
 - Add BaseModelAnonymiser class
@@ -33,7 +30,6 @@
 - Batch errors
 - Add check for an 'ALLOWS_ANONYMISATION' variable
 - Add configuration and Makefile for pypi
-- Catch OperationalError when running migrate
 - Don't fail checks if birdbath tables don't exist
 - Django system check if birdbath hasn't executed
 
