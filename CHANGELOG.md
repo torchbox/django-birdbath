@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v1.1.1 (2023-12-18)
+
+- Remove upper bound on Faker dependency
+
 ## v1.1.0 (2023-02-20)
 
 - Add black, flake8 and isort and fix all associated errors
