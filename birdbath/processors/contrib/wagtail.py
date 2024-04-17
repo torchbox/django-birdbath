@@ -1,5 +1,5 @@
 from wagtail.contrib.forms.models import FormSubmission
-from wagtail.search.models import Query
+from wagtail.contrib.search_promotions.models import Query
 
 from birdbath.processors import BaseModelDeleter
 

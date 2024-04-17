@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## unreleased
+
+- Fix imports for compatability with Wagtail >= 5.0
+
 ## v1.1.1 (2023-12-18)
 
 - Remove upper bound on Faker dependency
