@@ -1,8 +1,8 @@
 # CHANGELOG
 
-## unreleased
+## v2.0.0 (2024-04-17)
 
-- Fix imports for compatability with Wagtail >= 5.0
+- Updates imports for compatibility with Wagtail >= 5.0, drops compatibility for older Wagtail releases
 
 ## v1.1.1 (2023-12-18)
 
