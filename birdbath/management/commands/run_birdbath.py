@@ -42,7 +42,7 @@ class Command(BaseCommand):
                 processor = import_string(processor_path)()
                 try:
                     processor.run()
-                except Exception as e:
+                except Exception as e:  # noqa: BLE001
                     errors.append(e)
 
             if errors:
