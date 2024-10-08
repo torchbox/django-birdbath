@@ -43,8 +43,6 @@ jobs:
           python-version: ${{ matrix.python }}
       - name: Install
         run: |
-          python -m pip install --upgrade pip
-          python -m pip install flit tox tox-gh-actions
-          flit install --extras dev
+          python -m pip install --upgrade pip tox tox-gh-actions
       - name: Test
         run: tox
