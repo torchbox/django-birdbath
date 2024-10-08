@@ -23,7 +23,7 @@ dependencies = [
 requires-python = ">=3.9"
 
 [project.urls]
-Home = "https://git.torchbox.com/internal/django-birdbath"
+Home = "https://github.com/torchbox/django-birdbath"
 
 [project.optional-dependencies]
 dev = [
