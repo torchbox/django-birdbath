@@ -3,7 +3,6 @@ import string
 from django.db import models
 from django.utils.crypto import get_random_string
 from django.utils.functional import cached_property
-
 from faker import Faker
 
 LOWERCASE_STRING = "".join(string.ascii_lowercase)
