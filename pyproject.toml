@@ -60,3 +60,8 @@ lint.select = [
     "C4", # flake8-comprehensions
     "UP", # pyupgrade
 ]
+
+[tool.pytest.ini_options]
+django_find_project = false
+pythonpath = "."
+DJANGO_SETTINGS_MODULE = "tests.settings"
