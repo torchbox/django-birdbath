@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## v2.0.1 (2024-10-22)
+
+- Add tests
+- Change project tooling to use ruff and flit
+- Set up CI on GitHub
+- Publish the source code on GitHub
+
 ## v2.0.0 (2024-04-17)
 
 - Updates imports for compatibility with Wagtail >= 5.0, drops compatibility for older Wagtail releases
