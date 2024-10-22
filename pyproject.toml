@@ -19,7 +19,8 @@ classifiers = [
 ]
 keywords = ["django", "anonymization", "data cleaning"]
 dependencies = [
-    "Faker >=8",
+    "Faker>=8",
+    "Django>=4.2",
 ]
 requires-python = ">=3.9"
 
