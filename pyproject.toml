@@ -15,15 +15,17 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
 ]
 keywords = ["django", "anonymization", "data cleaning"]
 dependencies = [
-    "Faker >=8",
+    "Faker>=8",
+    "Django>=4.2",
 ]
 requires-python = ">=3.9"
 
 [project.urls]
-Home = "https://git.torchbox.com/internal/django-birdbath"
+Home = "https://github.com/torchbox/django-birdbath"
 
 [project.optional-dependencies]
 dev = [
@@ -60,3 +62,8 @@ lint.select = [
     "C4", # flake8-comprehensions
     "UP", # pyupgrade
 ]
+
+[tool.pytest.ini_options]
+django_find_project = false
+pythonpath = "."
+DJANGO_SETTINGS_MODULE = "tests.settings"

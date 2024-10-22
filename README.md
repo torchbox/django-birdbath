@@ -39,7 +39,7 @@ Your site will probably have some of your own check/processor needs.
 
 Custom checks can be implemented by subclassing `birdbath.checks.BaseCheck` and implementing the `check` method:
 
-```
+```python
 from birdbath.checks import BaseCheck
 
 
@@ -54,7 +54,7 @@ The `check` method should either return `True` if the checks should continue, or
 
 Custom processors can be implemented by subclassing `birdbath.processors.BaseProcessor` and implementing the `run` method:
 
-```
+```python
 from birdbath.processors import BaseProcessor
 
 
@@ -65,7 +65,7 @@ class DeleteAllMyUsersProcessor(BaseProcessor):
 
 There are also more specialised base classes in `birdbath.processors` that can help you write cleaner custom processors. For example, the above example could be written using the `BaseModelDeleter` class instead:
 
-```
+```python
 from birdbath.processors import BaseModelDeleter
 
 
@@ -75,7 +75,7 @@ class DeleteAllMyUsersProcessor(BaseModelDeleter):
 
 If you only need to delete a subset of users, you can override the `get_queryset()` method, like so:
 
-```
+```python
 from birdbath.processors import BaseModelDeleter
 
 
@@ -88,8 +88,7 @@ class DeleteNonStaffUsersProcessor(BaseModelDeleter):
 
 If you're looking to 'anonymise' rather than delete objects, you will likely find the `BaseModelAnonymiser` class useful. You just need to indicate the fields that should be 'anonymised' or 'cleared', and the class will do the rest. For example:
 
-
-```
+```python
 from birdbath.processors import BaseModelAnonymiser
 
 
@@ -122,7 +121,7 @@ The class will generate:
 
  If you have fields with custom validation requirements, or would simply like to generate more realistic replacement values, you can add 'generate' methods to your subclass to achieve this. `BaseModelAnonymiser` will automatically look for method matching the format `"generate_{field_name}"` when anoymising field values. For example, the following processor will generate random values for "account_holder" and "account_number" fields:
 
-```
+```python
 from birdbath.processors import BaseModelAnonymiser
 
 
