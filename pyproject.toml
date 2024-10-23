@@ -67,3 +67,6 @@ lint.select = [
 django_find_project = false
 pythonpath = "."
 DJANGO_SETTINGS_MODULE = "tests.settings"
+testpaths = [
+    "tests",
+]
