@@ -29,12 +29,12 @@ Home = "https://github.com/torchbox/django-birdbath"
 
 [project.optional-dependencies]
 dev = [
-    "django~=4.2",
+    "django>=4.2",
     "pre-commit>=3.8.0",
     "pytest~=8.3",
     "pytest-django~=4.9",
     "ruff==0.6.9",
-    "wagtail~=5.2",
+    "wagtail>=5.2",
 ]
 
 [tool.flit.module]
@@ -44,7 +44,7 @@ name = "birdbath"
 include = ["LICENSE", "CHANGELOG.md", "README.md"]
 
 [tool.ruff]
-target-version = "py39"
+target-version = "py313"
 
 exclude = [
     ".github",
