@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Unreleased
+
+- Add testing for Wagtail 6.3 & 7.0
+- Use python 3.13 across workflows and formatting
+
 ## v2.0.1 (2024-10-22)
 
 - Add tests
