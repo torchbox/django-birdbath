@@ -6,7 +6,13 @@ from birdbath.checks import BaseCheck
 class HerokuNotProductionCheck(BaseCheck):
     def check(self):
         heroku_app_name = os.environ.get("HEROKU_APP_NAME")
-        return heroku_app_name and "production" not in heroku_app_name
+        if not heroku_app_name: 
+            # When the variable is not set, we are not on Heroku.
+            return true
+        if "production" in heroku_app_name:
+            # If the variable is set and contains "production" we want to fail.
+            return false
+        return true
 
 
 class HerokuAnonymisationAllowedCheck(BaseCheck):
