@@ -126,6 +126,9 @@ class BaseModelAnonymiser(BaseModelProcessor):
         length = length or self.faker.pyint(min_length, max_length)
         return get_random_string(length, allowed_chars=allowed_chars)
 
+    def get_random_paragraph(self, number_of_sentences=5, variable_nb_sentences=True):
+        return self.faker.paragraph(number_of_sentences, variable_nb_sentences)
+
     def get_random_lowercase_string(self, min_length=1, max_length=50, length=None):
         return self.get_random_string(min_length, max_length, length, LOWERCASE_STRING)
 
@@ -144,6 +147,8 @@ class BaseModelAnonymiser(BaseModelProcessor):
             return self.get_random_email(field.max_length)
         if isinstance(field, models.DateField):
             return self.faker.past_date()
+        if isinstance(field, models.TextField):
+            return self.get_random_paragraph()
         if isinstance(field, NUMBER_FIELD_TYPES):
             return self.get_random_integer(field.min_value, field.max_value)
         if field_name in FIRST_NAME_FIELDS:
