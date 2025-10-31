@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Add testing/support for Wagtail 7.2
 - Add testing for Wagtail 6.3, 7.0 and 7.1
 - Use python 3.13 across workflows and formatting
 
