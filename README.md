@@ -168,4 +168,4 @@ The release process is automated using GitHub Actions. To prepare a new release:
 3. Update `CHANGELOG.md` to add a new section for the new version, including a date and a list of changes.
 4. Commit and push the branch to GitHub.
 5. Open a pull request against `main` and merge it once approved.
-6. Create a new release on GitHub using the new version number and the changelog entrys as the release notes. This will trigger the GitHub Actions workflow to build and publish the new package to PyPI.
+6. Create a new release on GitHub using the new version number and the changelog entries as the release notes. This will trigger the GitHub Actions workflow to build and publish the new package to PyPI.
