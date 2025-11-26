@@ -157,3 +157,15 @@ class DirectDebitDeclarationAnonymiser(BaseModelAnonymiser):
 - `processors.users.UserPasswordAnonymiser` - replaces user passwords with random UUIDs
 - `processors.contrib.wagtail.SearchQueryCleaner` - removes the full search query history
 - `processors.contrib.wagtail.FormSubmissionCleaner` - removes all form submissions
+
+
+## Making a new release
+
+The release process is automated using GitHub Actions. To prepare a new release:
+
+1. Create a new branch from `main` called `release/vX.Y.Z` where `X.Y.Z` is the new version number.
+2. Update the `__version__` variable in `birdbath/__init__.py` to match the new version number.
+3. Update `CHANGELOG.md` to add a new section for the new version, including a date and a list of changes.
+4. Commit and push the branch to GitHub.
+5. Open a pull request against `main` and merge it once approved.
+6. Create a new release on GitHub using the new version number and the changelog entries as the release notes. This will trigger the GitHub Actions workflow to build and publish the new package to PyPI.
