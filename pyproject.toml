@@ -11,18 +11,18 @@ license = {file = "LICENSE"}
 classifiers = [
     "License :: OSI Approved :: BSD License",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
 ]
 keywords = ["django", "anonymization", "data cleaning"]
 dependencies = [
     "Faker>=8",
     "Django>=4.2",
 ]
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 
 [project.urls]
 Home = "https://github.com/torchbox/django-birdbath"
@@ -30,11 +30,11 @@ Home = "https://github.com/torchbox/django-birdbath"
 [project.optional-dependencies]
 dev = [
     "django>=4.2",
-    "pre-commit>=3.8.0",
-    "pytest~=8.3",
-    "pytest-django~=4.9",
-    "ruff==0.6.9",
-    "wagtail>=5.2",
+    "pre-commit>=4.3.0",
+    "pytest~=8.4",
+    "pytest-django~=4.11",
+    "ruff==0.14.6",
+    "wagtail>=7.0",
 ]
 
 [tool.flit.module]
