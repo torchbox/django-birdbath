@@ -19,3 +19,5 @@ INSTALLED_APPS = [
 SECRET_KEY = "not-so-secret-for-tests"
 
 STATIC_URL = "/static/"
+
+USE_TZ = True

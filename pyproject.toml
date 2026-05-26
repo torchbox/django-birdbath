@@ -44,7 +44,7 @@ name = "birdbath"
 include = ["LICENSE", "CHANGELOG.md", "README.md"]
 
 [tool.ruff]
-target-version = "py313"
+target-version = "py310"
 
 exclude = [
     ".github",

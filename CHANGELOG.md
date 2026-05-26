@@ -2,10 +2,16 @@
 
 ## Unreleased
 
-- Add testing/support for Wagtail 7.2
+- Add testing/support for Wagtail 7.4 LTS
+- Add testing/support for Wagtail 7.3
+- Drop testing/support for Wagtail 7.1 and 7.2 (end of life upstream)
 - Drop testing/support for Python 3.9
 - Add testing/support for Python 3.14
 - Pin the minimum supported Wagtail version to 7.0
+- Drop Wagtail 5.x and 6.x from the test matrix; now covering Wagtail 7.0, 7.3, and 7.4
+- Add Django 6.0 and Python 3.14 to the test matrix
+- Fix invalid `Django 5.1 + Wagtail 7.3` combination in the test matrix (Wagtail 7.3 does not support Django 5.1)
+- Remove deprecated `default_app_config` from `birdbath/__init__.py`
 
 ## v2.0.1 (2024-10-22)
 
